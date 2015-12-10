@@ -1,0 +1,40 @@
+<% include head %>
+<div id="linkedin_details" style="display:none">
+  <h2>You're logged in with Linkedin!</h2>
+  <ul>
+    <li>
+      <h3>First Name</h3>
+      <p id="name"></p>
+    </li>
+    <li>
+          <h3>Last Name</h3>
+          <p id="lastname"></p>
+    </li>
+    <li>
+      <h3>Login ID</h3>
+      <p id="login"></p>
+    </li>    
+    <li>
+      <h3>Profile Picture</h3>
+      <p ><img id="profilePic" ></p>
+    </li>
+  </ul>
+</div>
+<script type="text/javascript">
+if (!Parse.User.current()) {
+  window.location.href='/';
+} else {
+  Parse.Cloud.run('getlinkedinData', {}).then(function(response) {
+      $('#name').text(response.firstName);
+      $('#login').text(response.id);
+      $('#lastname').text(response.lastName);
+      $('#profilePic').attr('src', response.pictureUrl);      
+      $('#linkedin_details').show();
+  }, function(error) {
+    alert('There was an error getting your Linkedin details, ' +
+      'please check the console for more information.');
+    console.log(error);
+  });
+}
+</script>
+<% include foot %>

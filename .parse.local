@@ -1,0 +1,10 @@
+{
+  "applications": {
+    "ParseGenericOpenAuth": {
+      "applicationId": "myOM52f9u7IXHddtFl0QfqzXG1vhFhlwd7V1mJsy"
+    },
+    "_default": {
+      "link": "ParseGenericOpenAuth"
+    }
+  }
+}
